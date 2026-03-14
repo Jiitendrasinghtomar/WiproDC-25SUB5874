@@ -1,0 +1,110 @@
+- compute
+- storage
+- network
+
+Cloud vs On-Premises
+
+On-Premises
+	- means within the campus/building
+	- more secure
+	- you need to do administration, networking, security
+	
+Cloud
+	- is a data center, which is owned by another vendor
+	- you are just renting the resources and paying for what you use.
+	- it uses 	PAY-AS-YOU-GO
+	
+Hub
+	- its a dumb device 
+	- it broadcasts the message to all open ports
+	- not good for security
+	
+Switch
+	- its an intelligent device as it sends data to specific system only via MAC address
+	- it is used within a LAN for connecting multiple devices at home/office together.
+	
+Router
+	- it connects different networks together
+	- like it connects your home systems with internet.
+	
+Private IP address
+	- it is used within
+		- home
+		- office
+		- department
+	- it has a range of:
+		Class A - 10.0.0.0 - 10.255.255.255
+		Class B - 172.16.0.0 - 172.16.255.255
+		Class C - 192.168.0.0 - 192.168.255.255
+	- these IP addresses are not accessible over the internet
+
+Public IP address
+	- its the internet
+	- these IP addresses are present and accessible over the internet.
+	- 
+
+Commonly used port numbers
+	80		- HTTP
+	443		- HTTPS
+	20,21	- FTP
+	22		- SSH
+	23		- Telnet
+	3389	- RDP
+	
+GUI
+	- Windows	= RDP (3389)
+	- Linux		= TigerVNC (59XX)
+	
+CLI
+	- Linux		= SSH (22)
+	- Linux		= Telnet (23)
+	- Windows	= PSRemoting (5985-HTTP/5986-HTTPS)
+	
+Server OS
+	- the job of server is to SERVE, to provide additional functionalities
+		- providing IP address (using DHCP)
+		- resolving Name into IP address (DNS)
+		- to host a website (internal/private or internet)
+	- it is used within organizations
+	- examples:
+		- windows server 2003
+		- windows server NT
+		- windows server 2008
+		- windows server 2008R2
+		- windows server 2012
+		- windows server 2012R2
+		- windows server 2016
+		- windows server 2019
+		- windows server 2022
+		- windows server 2025
+
+Client OS
+	- it always asks/requests from the server OS
+	- it is used for the end devices
+	- examples:
+		- Windows XP
+		- Windows 7
+		- Windows Vista
+		- Windows 8.0
+		- Windows 8.1
+		- Windows 10
+		- Windows 11
+
+UNIX
+	- AIX
+	- Solaris
+	- FreeBSD
+	- Tru64
+	- MacOS
+	
+linux
+	- RHEL 
+	- CentOS
+	- Ubuntu
+	- Arch Linux
+	- SUSe Linux
+	- Kali
+	- BackTrack
+	- Parrot
+	
+	
