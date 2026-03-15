@@ -1,0 +1,132 @@
+GitHub
+ - Jeetu
+ - all study material
+ - just DOWNLOAD
+
+GitLab --> Wipro SMEs.
+ - RPS
+ - whatever you do in session
+	- theory
+	- labs
+	- assignments
+	- tasks
+ - just UPLOAD
+ 
+Event viewer 
+	- a Windows-based GUI tool to list all the events happened till data on your system.
+	
+Logs (/var/logs/messages)
+	- alinux-based file for storing all the event logs in it. 
+	
+HP server
+	- iLO 
+	
+Dell server
+	- iDRAC
+	
+Performance of sec storage
+	- it is measured in IOPS - Input Output Per Second
+		HDD = 150 IOPS
+		SSD = 1.5 Million IOPS
+		
+Task - find 10 differences between HDD & SSD
+
+Data center
+	1. Everything as a service
+	2. elasticity
+	3. High avilability (HA) -> SLA = 99.99%
+	4. unlimited computational power 
+		- compute
+		- storage
+		- network
+
+Cloud env. = data center + 4 chars
+
+Private Cloud / Own cloud
+	1. Microsoft System Center Suite (PAID)
+	2. OpenStack (Free - Linux)
+	
+DAS 
+	- Direct Attached Storage
+    - its a storage that is connected DIRECTLY to the server/system
+	- like:
+		- internal HDD
+		- external HDD
+		- Pendrive
+	- Adv: its fast
+	- Disadv: the length of the cable is limited.
+	
+NAS
+	- Network Attached Storage
+	- a storage attached to a LAN/network to share the data among all the devices within the network.
+	- Adv: all the devices within network can access data
+	- Disadv: no redundancy
+	- its the storage solution for small & medium scale organization.
+	- its cheap
+	
+SAN
+	- Storage Area Network
+	- it provides redundancy.
+	- this is an enterprise-level storage solution
+	- SAN storage provides high speed and high performance 
+	- it is complicated to setup and its costly.
+	- components of SAN:
+		1. Storage array
+			- main device that stores data in SAN
+			- it has:
+				- disk drives
+				- controller
+				- cache memory
+				- RAID
+		2. HBA (Host Bus Adapter)
+			- HBA is hardware, installed in a server that connects to the SAN network.
+			- used for providing high-speed connectivity
+			
+		3. SAN Switch
+			- it connects servers and storages in the SAN network.
+			- it is used for routing storage traffic.
+		
+		4. Storage protocols
+			- defines how data is traffered between server and storage
+			- like:
+				- Fibre Channel (FC) - high speed, enterprises.
+				- iSCSI - for standard network
+				- FCoE - Fibre Channel over Ethernet - (FC + Ethernet)
+		5. LUN (Logical unit Number)
+			- its a storage on the storage volume, presented to the server locally.
+			
+		6. SAN managment software
+			- its a software to manage and monitor the SAN env.
+			- like:
+				- Dell EMC Unisphere
+				- HPE Overview
+				- IBM Spectrum Control
+				
+How to assign IP addresses to a client/server?
+	1. static IP address
+		- you allocate IP manually.
+		- its good for few machines
+	
+	2. dynamic IP address 
+		- IP is allocated to the client/server using DHCP server
+			DHCP
+				- Dynamic Host Configuration Protocol
+				- its a protocol that allocates IP addresses
+				- it works on port number: 67 & 68
+				- admins need to configure DHCP manually.
+		- its good for allocating IP addresses in BULK.
+		- DHCP works on DORA process
+			DORA = Discover, Offer, Request Acknowledgement
+	
+	3. APIPA
+		- Automatic Private IP Addressing
+		- when DHCP server is unable to provide IP address to the CLIENT, and client is set to automatic IP. then APIPA address is automatically allocated to this client machine.
+		- the range of APIPA address is:
+			169.254.0.0 - 169.254.255.255
+		- if you get APIPA address, then:
+			- APIPA will not allow you to connect/ping to another other system within same network.
+		- how to fix this APIPA?
+			1. apply static IP address OR
+			2. fix DHCP server.
+			
+		
