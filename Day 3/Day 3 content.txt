@@ -1,0 +1,171 @@
+Ip address
+	- 5 classes
+		- Class A
+			-> 0 - 127
+				0.0.0.0 = anywhere in the world
+				127.x.x.x = loopback address = 127.0.0.1
+			-> 16Mil hosts
+		- Class B
+			-> 128 - 191
+			-> 65535 hosts
+		- Class C
+			-> 192 - 223
+			-> 256 hosts
+		- Class D
+			-> 224 - 239
+		- Class E
+			-> 240 - 255
+			
+Reserved IP addresses
+---------------------
+Class A 	= 10.0.0.0 - 10.255.255.255 (Private IP address)
+Class B 	= 172.16.0.0 - 172.16.255.255 (Private IP address)
+Class C 	= 192.168.0.0 - 192.168.255.255 (Private IP address)
+Loopback 	= 127.0.0.0 - 127.255.255.255 (Testing)
+APIPA   	= 169.254.0.0 - 169.254.255.255
+
+File system:
+Windows 7, 8.0, 8.1, 10, 11 --> NTFS
+	- FAT/FAT16 (File Allocation Table)
+	- FAT32
+	- NTFS (New Technology File System)
+	- ReFS (Resilent File System) --> Mirror
+	
+Linux
+	- EXT (Extended file system)
+	- EXT2
+	- EXT3
+	- EXT4
+	- XFS (eXtended file system)
+	- Cramfs
+	- BTRFS (Better File System)
+	- exFAT
+
+MBR
+	- Master Boot Record
+	- its the 1st sector on the HDD containing the address of operating system.
+	- size of MBR is 512 bytes
+	- supports
+		- 4 Primary partitions
+		- HDD upto 2TB
+GPT
+	- GUID Partition Table
+		- GUID = Globally Unique IDentifier
+	- size of GPT: 512 bytes
+	- it supports
+		- 128 primary partitions
+		- HDD upto 18 Exabytes
+		
+Types of disks:
+-----------------
+1. Basic disks
+	- these disks cannot be extended
+2. Dynamic disks
+	- these disks sizes can be changed (inc/dec)
+	- here, we add 2 or more disks together
+	- are of 3 types:
+		1. Striped volume
+			- it requires identical disk size.
+		2. Spanned volume
+			- its optional to have identical disk size.
+		3. Mirror volume
+			- it requires identical disk size.
+	- these dynamic disk sizes must be identical, excluding spanned volume.
+	
+RAID
+	- Redundant Array of Independent Disks
+	- it is used primarily for redundancy
+	- types:
+		- RAID 0 - Stripping
+		- RAID 1 - Mirroring
+		- RAID 01 - Stripping with Mirror
+		- RAID 5 - Stripping with single parity
+		- RAID 6 - Stripping with dual parity
+		
+Hypervisor
+	- its a tool to achieve virtualization
+	- are of 2 types:
+		1. Type 1
+			- aka bare-matel hypervisor
+			- these HVs get installed directly on top of the hardware.
+			- these HVs does not require operating systems, they themselves act as an OS.
+			- Example:
+				- VMWare ESXi
+				- Microsoft Hyper-V
+				- Citrix Xen server
+				- Proxmox
+		2. Type 2
+			- aka Guest-based / OS-based HVs
+			- these HVs require an OS to work.
+			- Example:
+				- VMWare Workstation
+				- Microsoft Hyper-V
+				- Oracle Virtual Box
+				- Linux KVM
+				- VMWare Player
+				- VMWare Fusion
+				
+				
+===================================================================
+Windows server
+--------------
+	- its a server OS
+	- OS:
+		- windows server 2016
+		- windows server 2019
+		- windows server 2022
+		- windows server 2025
+	- Editions of windows server
+		- Windows Server Standard Edition
+			- create upto 2 VMs only.
+			- or 1 physical system and 1 virtual machine
+			- it is useful for small org.
+			
+		- Windows Server Datacenter Edition
+			- provides UNLIMITED VMs
+			
+		- Windows Server Essential Edition
+			- 25 devices, 50 users.
+			
+		- Windows Server Hyper-V Edition
+			- its type-1 HV for running VMs.
+			
+Installing windows server
+	1. Desktop Experience - GUI server
+	2. Server Core OS - CLI server (command -> sconfig.cmd)
+	3. Nano server - CLI server, but it works on PowerShell.
+	
+How to install Windows server
+	- ISO file
+	- CD/DVD
+	- WDS (Windows Deployment Server) - bulk installation
+	
+Server core
+	- sconfig.cmd - menu-driven tool for mgmt.
+	- cmd.exe - to work with command prompt
+	- powershell.exe - to work with PS
+	- taskmgr.msc - launch task manager
+	- SCRegEdit.wsf - to enable remote mgmt on server core OS.
+	- services.msc - to work with services (start, stop, restart...)
+	
+Role 
+	- are the service components that are needed for a server to work.
+	- we install the ROLES using Server manager dashboard page.
+	- like:
+		- DHCP (Dynamic host configuration protocol)
+		- DNS (Domain name Service)
+		- ADDS (Active Directory Domain Service)
+		- Web server 
+		- WDS (Window Deployment Service)
+		- WSUS (Windows Server update Service)
+		- Hyper-V
+		
+Feature
+	- these are additional supporting components for the roles
+	- like:
+		- DotNet Framework
+		- Bitlocker
+		- BITS - Background Intelligent Transfer Service
+		
+		
+Server manager dashboard page
