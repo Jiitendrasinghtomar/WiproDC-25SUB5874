@@ -1,0 +1,153 @@
+partitions on a HDD
+	1. primary partition
+		- are the partition that can store OS in it.
+		- MBR: 4 
+	2. extended partition
+		- are the partition that cannot store OS in it.
+	3. logical partition
+	
+Server manager dashboard page
+	- aka server manager, dashboard
+	- its a GUI tool to manage local as well as remote server.
+	- what I can do with server manager dashboard:
+		- install roles
+		- uninstall roles
+		- install features
+		- uninstall features
+		- change computer name
+		- change Ip address
+		- change date/time, timezone
+		- modify firewall
+		- manage remote computers
+		- create/modify/delete iSCSI storage
+		- set group policy
+		- host website
+		- check performance 
+		
+Administrative Tools:
+	- AD Administrative Center
+	- AD users and computers
+	- DNS console
+	- Event Viewer
+	- performance monitor (perfmon)
+	- Task schedular
+	- GPMC (Group Policy Management Console)
+	- GPME (Group Policy Management Editor)
+
+Windows Active Directory (WAD/AD)
+	- AD is a directory service developed by Microsoft for storing the information of users, computers and groups within an organization.
+	- this WAD exists offline (not on cloud), in cloud (Azure) this is known by the name Microsoft EntraID (Azure Active Directory (AAD)).
+	- AD performs 3A's:
+		- Authentication 
+			- who can login to the env.
+		- Authorization
+			- what can you access.
+		- Accounting
+			- you are responsible for what you do.
+	- to get AD, you need to install ADDS role using:
+		-> Server Dashboard page
+		-> Powershell (cmdlet)
+		
+Terms used in AD:
+-------------------
+Domain
+	- logical adminstrative boundary of an organization
+	- domain is a collection of:
+		- users
+		- computers
+		- groups
+	- these users, computers and groups are called "DOMAIN OBJECTS"
+	- these domain objects are stored within the database called as NTDS.DIT.
+		New Technology Directory Service.Directory
+
+Trees
+	- collection of domains
+	
+Forest
+	- collection of trees
+	
+Schema
+	- its the blueprint of the organization
+	- schema define the types of objects that can be created in AD.
+	
+Global Catalog (GC) Server 
+	- this is a searchable index.
+	- GC creates an index of all the objects within the organization for faster search.
+	
+OU
+	- organizational unit
+	- OU is like a department within a company
+	- OU contains 
+		- users
+		- computers
+		- groups
+
+Site
+	- physical, geo-graphical location
+	
+Group Policy
+	- its a policy to manage:
+		- users, 
+		- computers
+		- permissions
+		- security
+		- softwares...
+		
+Components of AD:
+-----------------
+1. Physical component
+	- Domain Controller (DC)
+		- the MAIN machine/server.
+		- its a server that hosts the "NTDS.DIT" database and controls all the machines within the environment.
+		- in DC, we create and apply group policies.
+	- Data store
+		- its a file/storage that stores AD information
+	- Global Catalog (GC) 
+		- its the searchable, read-only index 
+	- RODC (Read-Only Domain Controller)
+		- read-only domain controller
+		- read only copy of the the domain.
+		- branch office uses RODC
+2. Logical component
+	- partition
+		- its the logical seperation of NTDS.DIT DB.
+	- schema
+	- domain
+	- domain trees / trees
+	- forest
+	- sites
+	- OUs
+	
+Domain & workgroup:
+-----------------------
+Domain
+	- means, the system is part of an organization
+	- centralized management
+		- install/uninstall roles and features
+		- install softwares
+		- fetch reports
+		- allow centralized user to login 
+	- only domain admin can manage this system.
+
+Workgroup 
+	- individual system (you are not part of any group/company)
+	- no centralized management
+	- only local admin can manage this system.
+	
+Data Deduplication:
+---------------------
+	- aka dedup
+	- it helps in identifying and REMOVING the duplicated data from HDD.
+	- it is useful in:
+		- backedup files & directories
+		- file shares
+		- shared folders
+	- dedup are of 2 types:
+		1. File-level deduplication
+			- it maintains copy of every single version of data.
+			- it consumes more space.
+		2. Block-level deduplication
+			- it breaks the whole data into various blocks
+			- & then it stores only the unique data.
+			- so it utilizes less space than File-level deduplication.
+			
