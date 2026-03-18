@@ -1,0 +1,135 @@
+Types of Domain Controllers(DC)
+	- Domain Controller (DC)
+	- Additional Domain Controller (ADC)
+	- Backup Domain Controller (BDC)
+	- Read-Only Domain Controller (RODC)
+	- Primary Domain Controller (PDC)
+	
+FSMO roles
+	- Flexible Single Master Operation
+	- these are the special domain controller tasks/job.
+	- these FSMO are applied on 2 levels
+		1. Forest-level
+			a. Domain Naming Master
+				- checks for the name
+			b. Schema Master
+				- checks for the blueprint
+		2. Domain-level
+			c. RID Master
+				- Relative IDentifier
+				- RID => SID --> object
+			d. PDC Emulator
+				- it provides the back compatibility with old systems
+				- it handles passwords and account lockouts.
+				- maintains time on every system within the network.
+				- every domain has only ONE PDC Emulator.
+			e. Infrastructure master
+				- this manages ref. to the objects in other domain.
+				- it is used for cross-domain object ref.
+	- command to check the roles:
+		> netdom query fsmo
+		
+How to create a domain controller (DC)
+	1. install a windows server OS 2016/2019/2022/2025...
+	2. perform post-installation configuration:
+		- change computer name
+		- set static IP address
+		- set date and time / timezone.
+	3. install ADDS role:
+		- GUI -> server manager dashboard page.
+		- CLI -> powershell cmdlet
+	4. Promote this system into a domain controller.
+	5. after restarting the system, login as:
+		- local administrator (as: administrator)
+		- domain administrator	--> domain-name\administrator
+			ex:
+				- training\jeetu		OR
+				- jeetu@training.com
+
+Storage Spaces:
+---------------
+	- allow you to virtualize the storage on a windows machine.
+	- it is similar to LVM (Logical Volume Manager) in Linux.
+	- we create a storage pool, which is a collection of various physical disks.
+	- minimum requirement to run a storage pool/ storage spaces are:
+		- minimum 2 disk for simple/mirror volume
+		- minimum 3 disks for parity
+	- how to create storage spaces
+		- add 2 or more HDDs in the domain controller (or any other machine).
+		- go to server dashboard page and go to storage spaces
+		- create a storage pool
+		- create a virtual disk
+		- assign the file system
+			- FAT32
+			- NTFS
+			- ReFS
+		- assign a drive letter (z:\)
+		- start using it...
+		
+Defining levels of availability:
+--------------------------------
+- the level of availability shows the resilency of a system making it availabile every time (HA).
+- there are different levels of availability:
+	1. High	 Availability
+	2. Fault Tolerance
+	3. Disaster Recovery (DR)
+	4. Continous Availability
+	
+High Availability:
+	- the service must be available every time with MINIMUM downtime.
+	- we can get this HA using concepts like:
+		- Clustering
+		- Redundancy
+		- Automatic Failover 
+	- practical implementation:
+		- Failover Clustering (FC)
+		- Network Load Balancer (NLB)
+		- Hyper-V replica
+
+Fault Tolerance (FT)
+	- no interruption during the hardware failure.
+	- this requires hardware-level redundancy
+		- RAID
+		- redundancy power supply
+		- redundancy network
+	
+Disaster Recovery (DR)
+	- restoring the services after major failure.
+	- focuses on backups and replications
+	
+Continous Availability
+	- NO downtime at all.
+	- like:
+		- storage spaces
+		- clusters
+		- san storage (MPIO)
+###############################################
+to login to RPS portal:
+username: 2SUB...5874_UXX 
+password: custom pwd
+
+to login to win10 VM:
+username: Admin
+password: P@%%w0rd@26
+
+to login to the DC VM:
+username: Administrator	
+password: pass@word1		
+###############################################		
+		
+Task
+---------
+1. install win10 under same lan segment with hostname as "win10".
+2. install windows server under same lan segment with 
+	hostname 		= member1
+	IP address 		= 192.168.10.11
+	Subnet Mask 	= 255.255.255.0
+	Gateway address	= 192.168.10.10
+	DNS				= 192.168.10.10
+3. install windows server under same lan segment with
+	hostname 		= member2
+	IP address 		= 192.168.10.12
+	Subnet Mask 	= 255.255.255.0
+	Gateway address	= 192.168.10.10
+	DNS				= 192.168.10.10
+4. take the snapshots for member1 & member2
