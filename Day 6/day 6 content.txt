@@ -1,0 +1,72 @@
+Command (open run using start button)
+------------------------------
+	1. to manage network
+		ncpa.cpl
+	2. to manage firewall
+		firewall.cpl
+	3. to manage computer system
+		compmgmt.msc
+	4. to manage disks
+		diskmgmt.msc
+	5. to manage services
+		services.msc
+	6. to manage firewall rules
+		wf.msc
+	7. to open cmd & powershell
+		cmd
+		powershell
+
+Step to be followed when a new windows machine is created:
+----------------------------------------------------------
+- install the windows OS (server/client)
+- give the password for the administrator (default 1st user in windows)
+- change
+	- computer name (do not restart)
+	- IP address
+	- time zone
+- install VMWare tools
+- after tools installation, restart the virtual machine
+- login to the VM and take the snapshot of the VM.
+
+to install data deduplication
+open powershell
+	> Install-WindowsFeature -Name FS-Data-Deduplication
+	
+NFS sharing
+	- Network File Sharing
+	- it is used for sharing the data between similar OSs
+	- like:
+		- windows to windows
+		- linux to linux
+
+Samba server
+	- it is used for sharing the data on cross-platforms
+	- like:
+		- linux to windows
+
+Windows Server Backup (WSB)
+------------------------------
+- WSB is a built-in tool for taking backups and restoring them if needed.
+- backup can be taken as:
+	1. full server backup
+	2. custom backup	
+
+Task 1
+----
+	- on member1, add 2 HDDs of 15GB each. --> 2x15GB = 30GB
+	- create a simple storage space with this 30GB
+	- install WSB on member1
+
+Task 2
+----
+	- rename all of your servers
+	- check if VMWare tools are installed.
+	
+Task 3 --> on saturday.
+------
+	- Document every task that was performed within session. --> word file.
+		- install of DC, member1, member2
+		- storage spaces
+		- data deduplication
+		- NFS
+		- WSB
