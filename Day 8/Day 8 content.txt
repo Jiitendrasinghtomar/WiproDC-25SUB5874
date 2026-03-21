@@ -1,0 +1,72 @@
+Network Load Balancer (NLB)
+----------------------------
+- it is used for balancing the network traffic load and distribute the traffic over the servers.
+
+steps:
+========
+- install IIS web server on Member1 and Member2.
+- configure a simple web site on both.
+- install NLB on both Member1 and Member2
+- configure the NLB with a cluster.
+- configure the IP for the cluster.
+- access the NLB IP address using DC machine.
+
+webserver
+	- a software to run internal or internet-facing websites 
+	- softwares to run websites:
+		- IIS web server on Windows (built-in)
+		- Apache Tom Cat (Linux, Windows)
+		- NGINX (linux)
+		
+Load balancing algo
+	- RoundRobin
+	- Weighted
+	- Geo-location
+	
+on DC, DNS (A record) must be created
+	IP	-	Name
+	192.168.10.100	nlbcluster (nlbcluster.training.com)
+	
+	
+Failover cluster
+----------------
+	- its a cluster containing multiple nodes (servers) in it.
+	- under FC, the nodes(members) are accessible via NAMES.
+
+steps:
+	- install Failover cluster feature on both Member1 and Member2
+	- validate the FC --> passed,
+	- configure the FC
+	- view the report generated via FC using internet explorer
+	- view/validate if both the nodes (members) are present under the nodes section in FC manager.
+	
+DNS
+-----
+	- Domain Name System
+	- DNS is used for resolving name into IP and vice-versa.
+	- Port Number: 53/tcp and 53/udp
+	- DNS is mandatory for Active Directory (AD)
+	- DNS uses "record" to store the system information (name and IP)
+
+Types of records in DNS:
+	- A record 		= IPv4 IP address (Name --> IP)
+		ex: www.abc.com <--> 1.2.3.4
+	- AAAA record	= IPv6 IP Address (Name --> IP)
+	- TXT record	= server's information
+	- SOA record	= Start Of Authority
+	- PTR record	= Pointer (IP --> Name)
+	- MX record		= Mail Exchange 
+	- CNAME record	= Canonical name (alternative name)
+
+Types of DNS Zones:
+	1. Primary zone
+		- read&write copy of DNS is present.
+	2. Secondary zone
+		- read-only copy of DNS is present.
+	3. Stub zone
+		- limited read&write copy of DNS is present.
+	4. Forward Lookup Zone
+		- it Maps hostname to IP address.
+	5. Reverse Lookup Zone
+		- it maps IP address to hostname.
+		
