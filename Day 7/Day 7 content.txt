@@ -1,0 +1,62 @@
+Network Load Balancer (NLB)
+----------------------------
+- it is used for balancing the network traffic load and distribute the traffic over the servers.
+
+steps:
+========
+- install IIS web server on Member1 and Member2.
+- configure a simple web site on both.
+- install NLB on both Member1 and Member2
+- configure the NLB with a cluster.
+- configure the IP for the cluster.
+- access the NLB IP address using DC machine.
+
+##############################################################
+Domain Controller (DC) installation and configuration.
+-------------------------------------------------------
+- DC is a server that hosts the NTDS.DIT database. 
+- DC is responsible for controlling all users, computers, groups, OUs, etc. within a domain/forest.
+- DC is used for creating amd applying group policies.
+- DC can install/uninstall any role or feature to local and remote computers using Powershell or server manager dashboard page.
+- DC contains details of any/all users within the domain. 
+- also, we can create, modify or delete users within domain.
+- DC is responsible for performing
+	- Authentication
+	- Authorization
+	- Accounting
+- to create domain controller, you need to install ADDS role and then configure it.
+
+steps:
+	- on DC, install ADDS role.
+	- configure the ADDS role and promote this server into a domain controller
+	- DC will restart
+	- after restart, login as domain administrator
+		domain/administrator   or
+		administrator@domain.com
+
+Pre-req:
+	-- ensure the name is DC
+	-- ensure that you have a static IP address
+		IP: 192.168.10.10
+		SM: 255.255.255.0
+		GW: 192.168.10.10
+		DNS: 192.168.10.10
+	-- Domain name: training.com 
+	- Domain administrator: training\administrator				//OR
+	- Domain administrator: administrator@training.com
+	
+- Domain Join the member server
+	- Member1 must be pinging DC
+	- Member2 must be pinging DC
+	- IMP: DNS on Member1 and Member2 must be 192.168.10.10
+	- you need domain administrator username and password to join the members to the domain.
+	
+to list IP address
+	> ipconfig
+	
+to list IP address, DNS..
+	> ipconfig /all
+	
+to list hostname/computername
+	>hostname
+	
