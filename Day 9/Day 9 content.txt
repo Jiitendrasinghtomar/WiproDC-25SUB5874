@@ -1,0 +1,149 @@
+DNS Zone Transfer
+--------------------
+	- DNS zone transfer is a process of replicating DNS database records from one DNS server to another, to maintain the consistency and redundancy.
+	- types of zone transfer
+		1. Full/All zone transfer (AXFR)
+			- it copies the entire zone database.
+			- its basically FULL transfer.
+			- useful in initial sync or major updates.
+	
+		2. Incremental zone transfer (IXFR)
+			- it transfers only the changed records
+			- it is more efficient than AXFR
+
+DNS Deligation
+--------------
+	- it means that a parent DNS zone hands over control to another DNS server using NS (Name Server) record.
+	- example:
+		parent 		--> wipro.com
+		subdomain	--> hr.wipro.com
+		
+ADDS Replication
+------------------
+	- this process allow domain controller  to sync with other AD servers.
+	- this ensure the consistency and availability across the domain.
+	
+concepts
+1. Multi-master Replication
+	- every domain controller can accept the changes and replicate them to others.
+	
+2. Replication scope
+	a. intra-site replication
+		- sync between DCs in the same/single site.
+		- fast and frequent
+		- traffic is moved within LAN network.
+	b. inter-site replication
+		- sync between DCs in the different sites.
+		- to send the data, it uses compressess the data.
+		- this happens on schedule.
+		- traffic is moved within WAN network.
+		
+what gets replicated?
+	- users
+	- groups
+	- OUs
+	- DNS data
+	- accounts
+	- security permissions
+	
+WSUS
+	- Windows Server Update Service
+	- its a role in windows server that helps you/any org to update their systems in a controlled and filtered way.
+	- meaning, you get to select what updates to be applied on which systems.
+	
+Components of WSUS architecture
+	1. WSUS server - a win server wwith WSUS role installed
+	2. Database - a db is needed for updating, approval and other things.
+				a. WID (Windows Internal Database)
+				d. SQL Server 
+	3. Clients - the machines where the updates will be applied.
+	4. Upstream server - the server connected with Microsoft to receive the updates.
+	
+WSUS Deployment types:
+	1. Standalone WSUS
+		- single wsus server will download the updates from Microsoft and deploy it on various client.
+		
+	2. Upstream/Downstream 
+		- Hierarchical setup
+		- it is used for large organizations ormultiple location
+		
+MDT
+	- Microsoft Deployment Toolkit
+	- its a free Microsoft tool used for deploying
+		- windows client OS
+		- windows server OS
+		- Applications
+		- drivers
+		- updates
+
+Group Policy
+---------------
+	- aka Group Policy Object (GPO)
+	- GPO is a feature in AD, that provides central-mgmt of OS, Apps, users, persmissions or anything...
+	- GPO allows admins to control the users and computers environment from a central location.
+	- GPOs are created, modified and applied from DC only.
+	
+GPO can:
+	- helps to enforce security policies
+	- deploy software (.msi only)
+	- configure desktops
+	- allow/deny control panel, wallpapers, USB, etc.
+	
+components of Group Policy
+	1. GPO - a container of policies
+	2. GPMC - Group policy Management Console, to create modify, delete GPO
+	3. GP Processing Engine - on client-side component to apply policy
+	
+Tools
+	- GPMC - create, modify, apply and delete GPO
+	- GPME - editor, for creating
+	- gpupdate /force - forcefully applying the GPO on client-side
+	- gpresult /rs /h - shows applied GPOs
+	- RSoP - to get the full report on applied policies.
+	
+Types of GPOs
+	1. Local GPO 
+		- stored within individual machines. 
+		- these local GPOs are applied without domain.
+	
+	2. Non-Local (Domain) GPO
+		- these are created on AD, and applied on users/computers in OUs, sites. 
+	
+	3. Starter GPO
+		- are the template GPOs that contains baseline settings for new GPO.
+		
+GPO hierarchy:
+--------------
+	- LSDOU
+		1. Local Computer
+		2. Site-level GPO
+		3. Domain-level GPO
+		4. OU-level GPO
+
+create a GP to set a wallpaper for all the systems:
+	- create a NFS folder with a wallpaper in it.
+	- we need a GPO --> wallpaper
+	- now to apply on client
+		- manually run command "gpupdate /force"
+		- logout and then login to the system.
+		- restart your computer.
+		- automatically between 90-120 mins, the GP will be applied.
+		
+Task:
+	- create a group policy to disable control panel on the systems.
+	- disable the policy also.
+	
+PowerShell
+--------------
+	- its a task automation tool by Microsoft.
+	- you can run admin-level tasks using powershell.
+	- you can manage local and remote computers too.
+	- you can run powershell cmdlets/scripts using:
+		- PowerShell Console
+		- PowerShell ISE (Integrated Scripting Environment)
+		- VSCode Editor
+	- PowerShell uses several extentions:
+		- .ps1 (mostly used)
+		- .psm1
+
+task - list top(latest) 10 application eventlogs.
