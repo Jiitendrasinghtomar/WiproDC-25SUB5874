@@ -1,0 +1,249 @@
+NS record - specified the authoritative DNS server responsible for resolving domain.
+
+domain systems	--> group policy
+mobile/tablets	--> Microsoft Intune
+servers			--> Microsoft System Configuration Manager
+
+Folder redirection
+--------------------
+- Folder redirection is a group policy feature that allows admins to redirect certain user's folders from local computer to a central storage.
+- it reduces local disk usage.
+- improve security
+
+list of folders that can be redirected:
+	- Desktop
+	- Document 
+	- Download
+	- Pictures
+	- Videos
+	- AppData
+	
+Task - create a new user in AD, which must have similar permission as administrator.
+	DC -> Dashboard -> Tool -> Active Directory Users and Computers -> Users OU 
+	
+Active Directory Certificate Services (ADCS)
+--------------------------------------------
+- ADCS is a server role that allows organizations to 
+	- issue, 
+	- manage, 
+	- validates, 
+	- revoke
+	the certificates
+	
+- ADCS uses its own PKI (Public Key Infrastructure) that helps users, devices and services to use authentication, encryption and digital signatures within organizations.
+
+ http://sbi.com		--> unsecure
+ https://sbi.com	--> secure	--> SSL certificates --> cert company.
+ 
+ex:
+	- GoDaddy
+	- Microsoft
+	- DigiCert
+	- VeriSign
+	- Comodo
+
+PKI (Public Key Infrastructure) 
+	- its a framework used for secure communication by using cryptographic keys and digital cert.
+	- PKI uses 2 major cryptographic keys
+		1. Symmetric Key
+			- one single key will be used for both encryption and decryption.
+			- it is much faster, but less secure.
+		2. Asymmetric Key
+			- uses 2 keys for encryption and decryption.
+				- PUBLIC key is used for encryption
+				- PRIVATE key is used for decryption
+			- it is slow than Symmetric key, but it is very secure.
+			
+why ADCS is needed?
+	- sending and receiving secure emails.
+	- SSL/TLS encryption for websites
+	- smart card access
+	- VPN
+	- code signing
+	
+Components of ADCS
+	1. Certification Authority (CA)
+		- its a server role that issues/manages certificates
+	2. Certificate Template
+		- defines the rules or format
+	3. CRL (Certificate Revocation List)
+		- a list of revoked certificates
+	4. OCSP (Online Certficate Status Protocol)
+		- real-time certificate revocation check
+	
+Types of CAs
+	1. Enterprise CA
+		- for companies
+		- integrated with AD
+	2. Standalone CA
+		- manual
+		- not for organizations
+		
+Root CA
+	- the top CA in the heirarchy
+	- generally this CA will be only used when issuing of new certificates are needed, rest of the time this ROOT CA will be offline.
+
+Subordinate CA
+	- is usually below th root CA, and it receives certificates to issue to another level (user, services, servers, etc...)
+
+Issuing CA
+	- the job of these CAs is to get the certificates from Subordinate CA and then pass it/issue it to the users, computers, server and so on.
+	
+Active Directory Federation Services (ADFS)
+--------------------------------------------
+- ADFS is a SSO (Single-Sign On)
+
+- features of ADFS:
+	- Single-Sign On
+	- Federation
+		- trusting 2 or more organizations/domains
+	- Claim-based authentication
+		- uses security tokens with user identity data (claims)
+	- Multi-Factor Authentication
+		- Username+Password + OTP/Finger print/TOTP
+	- Integration with Microsoft EntraID
+	
+- Supprted protocols:
+	- SAML 2.0 			- external(3rd party authentication)
+	- WS-Federation 	- for legacy/old apps
+	- OAuth 2.0			- latest authentication for apps and APIs
+	- OpenID Connect	- web apps
+	
+	
+Active Directory Rights Management System (AD-RMS)
+	- ADRMS is used for protection information from getting leaked.
+	- ADRMS protects sensitive information using policies like, who can access with what permissions.
+	- permissions
+		- forwarding
+		- taking screen shots
+		- editing the email
+		- copying the content
+		- reading
+		- writing
+		- printing the document
+	- key components
+		- AD-RMS Server
+			- issues licenses and enforce policies
+		- Active Directory (AD)
+			- for authentication of users
+		- SQL Server
+			- storing logs and configurations
+		- Client (ADRMS enabled)
+			- Word, outlook..
+			
+Virtualization
+-------------------
+- virtualization is the process of creating virtual version of:
+	- operating systems
+	- storage
+	- network
+	
+- virtualization is, running multiple virtual machines on a single heavy-duty server.
+
+- Nested virtualization - running virtual machines within virtual machine.
+
+- key concepts:
+	1. hypervisor
+		- a tool/software to achieve virtualization
+	2. virtual machine
+		- its a simulated version of a physical operating systems
+	3. host machine 
+		- the physical server on which hypervisor and VMs are running.
+	4. Guest OS	-> win10, Dc, mem1 & 2
+		- the OS installed within a VM.
+		
+Types of Virtualization:
+1. Server virtualization
+	- runing multiple VMS ona physical server.
+	
+2. Desktop virtualization
+	- virtual desktops running in a central server.
+	- aka VDI (Virtual Desktop Infrastructure)
+		- RPS 	-> labs
+		- Azure -> Azure Virtual Desktop (AVD)
+		- AWS 	-> Workspaces
+		
+3. Application virtualization
+	- apps running on a central server and you can access it remotely.
+	- ex:
+		- facebook
+		- tic tac toe
+		
+4. Storage virtualization
+	- having physical storage accessed on multiple devices
+	- ex: iSCSI storage
+
+5. Network virtualization
+	- combining physical network resources into a single software-based entity.
+	
+big players in market:
+	- VMWare (Broadcom)
+	- Microsoft Hyper-V
+	- RedHat RHV
+	- Citrix Xen server
+	- Oracle VB
+	- Proxmox Virtual Environment (VE)
+	- Nutanix AHV (Acopolis Hypervisor)
+	
+Types of Hypervisor
+	1. Type-1
+		- bare-matel hypervisor
+		- it does not require additional OS as itself it will act as an OS.
+		-ex:
+			- Microsoft Hyper-V
+			- VMWare ESXi
+			- Cirtix Xen server
+	2. Type-2
+		- Guest-based hypervisor
+		- they need an OS to work.
+		- ex:
+			- Microsoft Hyper-V
+			- VMWare workstation
+			- Oracle VB
+
+Hyper-V:
+	- its a built-in role in windows server and client OS
+		- Client OS
+			- Windows 10 Pro edition
+			- Windows 11 Pro edition
+			- Windows 10 Enterprise edition
+			- Windows 11 Enterprise edition
+	- in client OS, it can be enabled from control panel
+	- in server OS, we can install a role using PowerShell or Server Manager Dashboard Page.
+	
+Components of Hyper-V
+- Hypervisor
+	- the main layer that runs VMs
+- VMMS
+	- Virtual machine Management services
+	- manages the life-cycle of VM (start, stop, restart...)
+- VHD/VHDX 
+	- formats of HDD
+	- VHD 	- supports upto 2TB of HDD
+	- VHDX  - supports upto 64TB of HDD
+- Virtual Switch
+	- networking component that allows the connectivity between
+		Private Switch 	- VM to VM
+		Internal Switch - VM to Host
+		External Switch	- VM to External host/internet
+- Checkpoint
+	- to capture the snapshot (similar to VMWare)
+- Integration services	
+	- similar to VMWare tools in VMWare workstation
+
+Key features of Hyper-V:
+	1. Live Migration
+		- no downtime when the hardware crashes.
+	2. Storage Migration
+		- moving the storage from one central storage to another.
+		- it requires shared storage or Samba SMB3.0 (Service Message Block) storage
+	3. Dynamic Memory
+		- Hyper-V allocates the RAM to any VM as needed.
+	4. Sheilded VM
+		- to protect Windows machines (only) within Hyper-V env.
+		- it encrypts the windows OS/VM.
+
+Containers
+--------------
+	- containers are light-weight solution for virtual machines
+	- 
