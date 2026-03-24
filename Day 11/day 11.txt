@@ -1,0 +1,170 @@
+Containers
+--------------
+- containers are light-weight solution for virtual machines
+- containers uses the host operating system for the resources.
+- containers contains only required binaries and libraries to host an application.
+- container engine (C.E):
+	- Docker
+	- container.io
+- all the docker containers can be uploaded to a central repository called DockerHub.
+- command to download the docker container:
+	docker pull tomarj44/c7custom:v3
+	
+	docker  
+		- create containers 
+	kubernetes (k8s) & docker-compose
+		- manage/scale containers
+		
+VMWare virtualized environment:
+-------------------------------
+VMWare - company (broadcom)
+products
+	- workstation (type 2 hypervisor)
+	- ESXi (type 1 hypervisor)
+	- vCenter server (SSO)
+
+
+VMWare vSphere environment
+------------------
+- VMWare vSphere is a production-level solution for virtual machines.
+- with this, you can centrally manage all the VMs and its working as well. 
+- it provides centralized control, automation and monitoring.
+- vCenter server provides SSO functionality.
+- this environment requires a domain controller (manadatory) 
+- it requires shared storage (iSCSI) - optional, but recommended.
+
+VMWare vSphere Components:
+---------------------------
+1. ESXi server
+	- Elastic Sky X Integrated -> in use currently.
+	- Elastic Sky X (ESX) is old version and is depricated.
+	- its a Type-1 hypervisor that is responsible for hosting and running VMs on top if it.
+	- ESXi has its own storage drive, called as data store (min 40GB).
+	- ESXi requires minimum of 4GB RAM, but 8GB is recommended.
+	- ESXi requires minimum 2 core processors
+	- you must have a minimum of 2 ESXi server in your environment for HA, DRS, vMotion, storage vMotion.
+	- to connect and manage ESXi, we need to use DCUI (Direct Connect User Interface) console
+	- locally, ESXi uses "virtual standard switch" (vSS) for connection/communication.
+
+2. VMWare vCenter server
+	- its a centralized management platform for ESXi hosts/servers.
+	- Vcenter can host:
+		- virtual machines
+		- networks
+		- datastore (storage)
+		- clusters
+	- vCenter server provides:
+		- HA (high availability)
+		- DRS (Distributed Resource Schedular)
+		- vMotion
+		- Storage vMotion
+		- Templates
+		- Cloning
+		- Permissions
+		- Policies
+		- manager users
+	- Inventory Objects within vCenter server:
+		1. Datacenter - its a logical container for VMs, hosts, clusters.
+		2. Cluster - its a group pf ESXi hosts, pooled together for HA and resource sharing.
+		3. Hosts - these are physical ESXi servers.
+		4. Resource Pool - logical abstraction to allocate memory, cpu, datastore and other resources.
+		5. Datastore - its the storage that contains:
+						- virtual machine HDDs
+						- ISO image files
+						- Templates (blueprint)
+		6. Network - virtual network containing port groups and virtual switches
+		
+vCenter types:
+---------------
+1. vCenter Server
+	- its a windows-based vCenter.
+	- its depricated now.
+2. vCenter Appliance
+	- now we use VCSA (vCenter Server Appliance)
+	- its a linux-based vCenter server
+	- VCSA uses its own operating system called, "Photon"
+	
+Networking components in vCenter:
+------------------------------------
+1. Virtual switch
+	- just like s physical switch only.
+	- these switches are created during the installation of ESXi.
+	- these switches allow the components to communicate with each other.
+	
+	- types of switches in vCenter server:
+		1. vStandard Switch (vSS)
+			- vSS get created during the installation of ESXi server.
+			- this switch manages all the communication to & from the ESXi server.
+			- used for one to one communication
+				Host 	-> Host
+				vCenter -> Host
+				
+		2. vDistributed Switch (vDS)
+			- we need to create vDS manually.
+			- vDS is responsible for manageing multiple ESXi hosts at the same time.
+			- vDS centrally manages all hosts.
+			- vDS is created on vCenter server
+		
+2. Port Groups
+	- it defines the network configuration for VMs.
+	- it is used for creating virtual, isolated group that allow only specific type of traffic.
+
+3. VMKernel (vmk) port group
+	- this is a special type of port group used for host-level traffic
+		- vMotion
+		- Management
+		- Fault Tolarence
+		- Storage
+		- vSAN (SAN storage within VMWare environment)
+		
+NIC Teaming
+	- combination of multiple NICs together to form a single unit.
+	- NIC Teaming is used for load balancing and FC.
+	
+vMotion
+	- migration of VMs from one ESXi host to another, in case of failure.
+	- types of vMotion:
+		1. Live Migration
+			- migrating the VM with NO downtime.
+			- its automated.
+		2. vMotion
+			- its a simple cold migrating
+			- it will have a downtime.
+			- its a manual job.
+	
+Storage vMotion
+	- moves a running virtual machine's HDD from one datastore to another with NO downtime.
+	- useful in:
+		- storage upgrades
+		- Maintainence
+		- Load balancing
+
+High Availability (HA)
+	- Ensures the VM uptime by automatically restarting the vm on another host, if one host fails.
+	- this is useful in:
+		- clusters
+		- shared storage
+		- VCSA
+
+DRS
+	- Distributed Resource Schedular
+	- it automatically balances VM workload across hosts in a cluster.
+	- DRS uses 3 approaches:
+		1. Manually
+		2. Partial Automated
+		3. Fully  Automated
+		
+Templates
+	- blueprint
+	- this is a golden image for faster deployment.
+
+Cloning
+	- its making an exact copy of an operating system.
+	- useful in testing/dev environment.
+	
+Templates vs Cloning ???
+
+
+Task after milestone
+	-> configure and access iSCSI storage.
+	
