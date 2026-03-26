@@ -1,0 +1,55 @@
+Scaling
+---------------------
+1. Horizontal Scaling
+	- you add more resources like VMs to the current system.
+
+2. Vertical scaling
+	- you increase or decrease the capacity of existing server.
+	
+Azure TCO calculator
+	- TCO = Total Cost of Ownership
+	- you can get the est. cost of moving from on prem to cloud.
+	- TCo is now depricated.
+	
+Azure - Express Route
+AWS	  - Direct Connect
+
+cloud services
+	- IAAS
+	- PAAS
+	- SAAS
+		- LBAAS
+		- FWAAS
+		- NAAS
+		- IDAAS
+		- etc...
+		
+Cloud deployment model
+	1. Public cloud
+		- its for the public.
+		- anyone with debit/credit card, pan, email and mobile number can create their account under Public cloud.
+		- ex:
+			- Azure
+			- AWS
+			- GCP
+		- Public cloud is multi-tenant cloud.
+	2. Private cloud
+		- its for specific organization
+		- Private cloud is a single-tenant cloud.
+		- ex:
+			- Microsoft System Center Suite
+			- Openstalk (linux-based)
+	3. Hybrid cloud
+		- its the combination of public and private cloud.
+		- combination of on-prem database with EC2 instance in AWS cloud.
+	4. Community cloud
+		- for specific offices/people
+		- like for:
+			- US gov. 	-> Gov Cloud
+			- China		-> Azure China
+			- Germany	-> Azure Germany
+	5. Multi-Cloud architecture
+		- multiple cloud will be connected to each other.
+		- like:
+			- Azure virtual machine is connected to S3 bucket in AWS.
+		- in Azure, we use Azure ARC for this multi-cloud connectivity.
