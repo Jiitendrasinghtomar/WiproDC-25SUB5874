@@ -1,0 +1,174 @@
+AWS
+-----
+- IAM
+- VPC
+- EC2 instance
+- S3 bucket
+-----
+IAM
+	- Identity and Access Management
+	- its a "global service" used for create, modifying, deleting and giving access to users or groups.
+	- IAM works on:
+		1. authentication (who you are)
+		2. authorization (what you can do)
+	- IAM is a free service
+
+key components of IAM
+----------------------
+1. Users
+	- you can create user/users in AWS using web console or AWS CLI.
+	- majorly there are 2 types of users in AWS
+		a. Root user 
+			- this is the 1st user in AWS.
+			- this user is the one who creates AWS account.
+			- Root user is like the administrator.
+		b. IAM user
+			- its a user that will use IAM services in a limited way.
+			- its a regular user.
+			- IAM user has less permissions to operate on AWS account.
+			- IAM user gets permissions from policies
+			- IAM works on RBAC (Role Based Access Control)
+			- ex:
+				- Megha -> Network administrator (VPC)
+				- Rohit -> storage admin (s3)
+				
+2. Groups
+	- its a collection of IAM users
+	- we create groups to allocate similar permissions to all the group members.
+	- we can create groups for all/any major implementation
+	- ex:
+		- database admins
+		- network admins
+		- stroage admins
+		- developers
+		- ReadOnlyUsers
+
+3. Roles
+	- "temporary" access identity
+	- we use roles in:
+		- EC2 accessing S3 bucket
+		- once AWS account accessing another AWS account
+		
+4. Policies
+	- Policies are the JSON (JavaScript Object Notation) document.
+	- Policies defines permissions that can be attached to a user, group or a role.
+	- types of Policies:
+		a. AWS managed policies - built-in policies
+		b. Customer managed policies - you/user creates them
+		c. Inline policies - directly embedded and cannot be reuse
+
+URL:
+	1. Root user URL	
+		- https://signin.aws.amazon.com/
+	2. IAM user URL		
+		- https://<Acc_ID or Alias>.signin.aws.amazon.com/console
+						
+to login to AWS:
+1. Console login - GUI login, web browser based login.
+2. Programmatic login -  CLI login, command prompt/powershell login.
+
+VPC:
+------
+- Virtual Private Cloud
+- VPC is a logically isolated virtual network inside AWS.
+- in VPC you can control:
+	- IP address
+	- Subnet
+	- Routing
+	- Security
+	- Internet Gateway
+		- etc...
+Key components of VPC
+----------------------
+1. CIDR block (IP range)
+	- 10.0.0.0/8
+	- 172.16.0.0/16
+	- 192.168.0.0/16
+
+2. Subnet
+	- Private subnet
+		- has NO internet connection.
+	- Public subnet
+		- has internet gateway attached to it for internet.
+		
+3. Internet Gateway
+	- IGW enables internet connectivity
+	- IGW must be attached to a VPC
+
+4. Routing table
+	- controls the route/traffic
+	- each subnet is associated with one route table.
+	- it controls inbound and outbound traffic.
+	
+5. Elastic IP
+	- its a static public IP address.
+	- in a free AWS account, upto 5 EIPs are allowed.
+	
+6. Security Group (SG)
+	- its like a firewall
+	- GS allow/deny the port numbers.
+	- it is applied on the instances
+	
+7. Network ACL (NACL)
+	- its Network Access Control List
+	- its a Subnet-level firewall
+	
+8. VPC peering
+	- it connects two VPCs privately.
+	- CIDR must not overlap each other.
+	
+
+Note - NEVER EVER DELETE DEFAULT VPC (the one which is default present).
+
+Step by step creation of VPC and other resources
+	1. Create a VPC
+	2. Create a subnet
+	3. Create an Internet Gateway (IGW)
+	4. Configure Route table
+	5. Create Security Group (SG)
+	6. Launch EC2 instance
+	
+S3 bucket
+----------
+- Simple Storage Service
+- S3 is an object-based storage service
+- S3 is designed for 
+	- scalability
+	- durability - 99.999999999% (11 9's)
+	- lower cost.
+
+Terms
+	1. bucket - container for objects, unique global name
+	2. Object - actual file.
+	3. key - unique identifier within the bucket
+
+Methods to access S3:
+	- AWS web console
+	- AWS CLI 
+	- AWS SDK (Jaya, Python)
+	- REST API
+	- Static website hosting
+	
+EC2 instance
+---------------
+- Elastic Compute Cloud 
+- its a virtual machine on AWS cloud.
+
+components
+1. instance
+	- its the virtual machine running in aws
+	- instance is define by:
+		- type of instance
+		- AMI (pre-installed OS)
+		- Storage
+		- Network
+2. AMI (Amazon Machine Image)
+	- its the OS template
+	- AMI contains:
+		- OS
+		- Pre-installed softwares
+	- types of AMIs:
+		- AWS provided
+		- Marketplace
+		- Custom AMI
+		
