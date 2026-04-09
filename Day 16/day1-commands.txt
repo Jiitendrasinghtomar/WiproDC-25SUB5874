@@ -1,0 +1,66 @@
+    1  cd /bin
+    2  whiami
+    3  whoami
+    4  which whoami
+    5  pwd
+    6  cat   whoami 
+    7  cd
+    8  cat   /etc/shells 
+    9  echo $SHELL
+   10  top
+   11  pidof system
+   12  pidof systemd
+   13  pgrep systemd
+   14  pstree
+   15  systemctl get-default 
+   16  systemctl set-default  multi-user.target; init 6
+   17  ip a
+   18  systemctl get-default 
+   19  systemctl set-default graphical.target
+   20  init 6
+   21  cat   /etc/os-release 
+   22  whoami
+   23  hostname
+   24  pwd
+   25  date
+   26  cal
+   27  su - jeetu
+   28  history 
+   29  date
+   30  timedatectl 
+   31  history 
+   32  history   >  day1-commands.txt
+   33  ls
+   34  history 
+   35  su  -  jeetu
+   36  tail   -2   /etc/passwd
+   37  passwd  mark
+   38  su - jeetu
+   39  mkdir  day1
+   40  cd day1
+   41  pwd
+   42  ls
+   43  touch touchfile.txt
+   44  ls
+   45  cat  >  catfile.txt
+   46  ls
+   47  cat   catfile.txt 
+   48  cat touchfile.txt 
+   49  cat > catfile.txt 
+   50  cat touchfile.txt 
+   51  cat   catfile.txt 
+   52  cat >> catfile.txt 
+   53  cat   catfile.txt 
+   54  nano  nanofile.txt
+   55  cat nanofile.txt 
+   56  vim vimfile.txt
+   57  cat vimfile.txt 
+   58  ls
+   59  rm  touchfile.txt 
+   60  rm  -f   touchfile.txt 
+   61  ls
+   62  rm  -f   *.txt
+   63  ls
+   64  cd
+   65  ls
+   66  history > day1-commands.txt 
