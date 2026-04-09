@@ -1,0 +1,89 @@
+open-source
+	- free to use, download and share
+	- you can download and change the code as source code is available
+	- Linux is open-source
+
+freeware
+	- free to use, download and share
+	- you cannot download and change the code 
+	- UNIX is freeware
+	
+runlevel
+	- init 0 = shutdown/halt
+	- init 1 = single user maintenance mode
+	- init 2 = multi-user maintenance mode
+	- init 3 = fully funcational CLI mode = multi-user.target
+	- init 4 = unused 
+	- init 5 = init 3 + GUI = graphical.target
+	- init 6 = reboot
+	
+	cmd: systemctl get-default --> graphical.target
+	
+GUI machine - RAM: 4GB
+CLI machine - RAM: 512MB
+
+Remoting
+------------
+Windows 
+	- GUI = RDP (3389)
+	- CLI = PSRemoting (5985/5986)
+	
+Linux
+	- GUI = TigerVNC (5900-5999)
+	- CLI
+		1. Telnet (23) - unsecure method
+		2. SSH (Secure SHell) (22) - secure method
+			- username & password
+			- username & public-private key (the most secure method)
+Tools for connecting remotely
+	- PowerShell
+	- Putty
+	- MobaXTerm 
+	- MTPutty
+	
+login
+	- when root user login to any other regular user -> no password
+	- when any regular user login to any user -> it will ask password
+	
+file mgmt
+	- create
+	- modifying
+	- delete
+	- copy
+	- move
+	- hide
+	- unhide
+permissions
+	- change permissions 
+	- changing owner 
+	- changing group owner 
+package (software) mgmt
+	- install, update, query/information, delete
+storage mgmt
+	- LVM
+user mgmt
+	- create, modify, delete
+process mgmt
+log mgmt
+	
+File management
+--------------------
+creating a file
+	- touch
+		1. to create a blank file
+		2. to udpate the timestamp of a file.
+		- cmd:
+			# touch file.txt
+	- cat
+		- view a file
+			# cat file.txt
+		- create a new file
+			# cat > file.txt
+		- append data 
+			# cat >> file.txt
+		- override data 
+			# cat > file.txt
+	- nano
+		# nano nanofile.txt
+	- vi / vim
+		# vim vimfile.txt
