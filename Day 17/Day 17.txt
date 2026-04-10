@@ -1,0 +1,109 @@
+path
+-----
+1. relative path
+	- in this path, we provide only the parent or current directory details.
+2. absolute path
+	- in this path, we provide full /absolute details from begining "/" till the end of the file/directory
+	
+Permission
+-----------
+- types of permissions
+	- read (r)		- 4
+	- write (w)		- 2
+	- execute (x)	- 1
+	-------------------
+	total			- 7
+	-------------------
+	
+- to which user these permissions are applied:
+	- owner/user	- u
+	- group			- g
+	- other			- o
+	-------------------
+	overall			- a
+	-------------------
+	
+to change the permissions
+	# chmod   <permissions>     <file/directory>
+	
+	1. numerical (0-7) method to change file permissions
+		# chmod  640  file.txt
+		# chmod  777  file.txt
+		# chmod  641  file.txt
+	
+	2. alphabetical/symbolical method to change permissions
+		chmod   <user/group/other><=+-><r/w/x>
+		# chmod  ugo=rwx file.txt
+		# chmod  u+rw- directory
+		# chmod  g+r-- file.txt
+
+changing file/directory ownership:
+	# chown   <new-owner-name>   <file/directory>
+	
+changing file/directory group ownership:
+	# chgrp   <new-group-name>   <file/directory>
+	
+Package mgmt
+--------------
+package (linux) == software (windows)
+source
+	1. offline
+		- CD/DVD (ISO)
+		- pre-downloaded package
+		
+	2. online
+		- CentOS - Mirror server (free)
+		- Redhat - Redhat Sattelite server (subscription, paid)
+		- FTP websites (free)
+		
+Name of the package
+	name-version-release-architecture.rpm
+		architecture
+			- 32bit = i686
+			- 64bit = x86_64
+			- noarch = architecture free (for both 32 & 64 bit)
+		
+Package manager
+	- is a utility that helps in performing the following tasks:
+		- Installing a package
+		- Upgrade a package
+		- get the information/query a package
+		- Uninstalling/remove a package
+	 - there are ton of package managers
+		- RPM - Redhat Package manager
+		- YUM - Yellowdog Update Modifier / Yellowdog Update Manager
+		- DNF - Dandified Package Manager
+		- APT - Advance Packaging Tool
+		- Deb/DPKG - Debian based package manager
+		- etc...
+		
+RPM 
+	- its the default method in Redhat and CentOS
+		- Installing a package
+			# rpm  -ivh   <full-package-name>.rpm
+				i = install
+				v = verbose
+				h = hashing 
+				
+		- Upgrade a package
+			# rpm  -Uvh   <full-package-name>.rpm
+				U = upgrade
+				
+		- get the information/query a package
+			# rpm -q <package-name>
+				q = query
+				
+		- Uninstalling/remove a package
+			#rpm -ev <package-name>
+				e = erase
+				v = verbose
+				
+YUM server
+	- Installing a package
+		# yum install -y <package-name>
+	- Upgrade a package
+		# yum update -y <package-name>
+	- get the information/query a package
+		# yum info <package-name>
+	- Uninstalling/remove a package
+		# yum remove -y <package-name>
