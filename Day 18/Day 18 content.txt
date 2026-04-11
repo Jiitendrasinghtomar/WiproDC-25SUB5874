@@ -1,0 +1,86 @@
+Issues with RPM:
+	1. full (absolute) path
+	2. full name of the package
+	3. dependency
+	
+
+YUM server
+	- Installing a package
+		# yum install -y <package-name>
+	- Upgrade a package
+		# yum update -y <package-name>
+	- get the information/query a package
+		# yum info <package-name>
+	- Uninstalling/remove a package
+		# yum remove -y <package-name>
+		
+LVM
+	- Logical Volume Manager
+	- its a logical storage created by combining multiple harddisks of same or different sizes.
+	
+steps for LVM creation:
+	- add 2 or more HDDs within linux system
+	- scan for newly added HDDs
+	- create a partition for all the HDDs (one by one) using FDISK (by root)
+	- create a physical volume (PV) using pvcreate command
+	- create a volume group (VG) using vgcreate command
+	- create a logical volume (LV) using lvcreate command
+	- create a file system for this newly create LV
+	- create a mount point for accessing LVM storage
+	- mount the partition
+		1. permanent mount
+			- after reboot also the partition will be available.
+		2. temporary mount
+			- the lvm partition will be removed automatically.
+			- you need to run command again (after reboot) to mount the partition
+			- we use command "mount"
+			- syntax:
+				# mount    <what-to-mount>    <where-to-mount>
+			
+	- verify the partition
+	
+task - add new 7GB HDD to existing system and extend the LVM to ~17GB (10+7).
+
+
+Process management:
+-------------------
+- types of processes:
+	1. foreground process (fg)
+		- its the process that occupies the terminal and during this you will not be able to use terminal.
+	2. background process (bg)
+		- these processes runs in the backend, releasing the terminal.
+		
+Note - foreground processes can be converted into background using "&".
+
+Log management
+-----------------
+	- a log is a record of an event occured on linux system
+	- it is stored in "/var/log"
+	- types of logs
+		- system activity log
+			# /var/log/messages
+		- authentication log (SSH, login, sudo 
+			# /var/log/secure
+		- boot logs
+			# /var/log/boot.log
+		- kernel logs
+			# /var/log/dmesg
+		
+ACL
+	- Access Control list
+	- ACL provides more granular level access.
+	- it has 2 command to do this:
+		1. getfacl	(list/display file ACL)
+		2. setfacl	(set/change file ACL)
+	- to change the ACL for a user
+		# setfacl -m u:<username>:<permissions>
+	- to change the ACL for a group
+		# setfacl -m g:<groupname>:<permissions>
+	- to remove ACL
+		# setfacl -b <file/directory>
+		
+special permissions
+	1. SUID
+	2. SGID
+	3. Sticky bit
+	

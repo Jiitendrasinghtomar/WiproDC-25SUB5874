@@ -1,0 +1,316 @@
+    1  cd /bin
+    2  whiami
+    3  whoami
+    4  which whoami
+    5  pwd
+    6  cat   whoami 
+    7  cd
+    8  cat   /etc/shells 
+    9  echo $SHELL
+   10  top
+   11  pidof system
+   12  pidof systemd
+   13  pgrep systemd
+   14  pstree
+   15  systemctl get-default 
+   16  systemctl set-default  multi-user.target; init 6
+   17  ip a
+   18  systemctl get-default 
+   19  systemctl set-default graphical.target
+   20  init 6
+   21  cat   /etc/os-release 
+   22  whoami
+   23  hostname
+   24  pwd
+   25  date
+   26  cal
+   27  su - jeetu
+   28  history 
+   29  date
+   30  timedatectl 
+   31  history 
+   32  history   >  day1-commands.txt
+   33  ls
+   34  history 
+   35  su  -  jeetu
+   36  tail   -2   /etc/passwd
+   37  passwd  mark
+   38  su - jeetu
+   39  mkdir  day1
+   40  cd day1
+   41  pwd
+   42  ls
+   43  touch touchfile.txt
+   44  ls
+   45  cat  >  catfile.txt
+   46  ls
+   47  cat   catfile.txt 
+   48  cat touchfile.txt 
+   49  cat > catfile.txt 
+   50  cat touchfile.txt 
+   51  cat   catfile.txt 
+   52  cat >> catfile.txt 
+   53  cat   catfile.txt 
+   54  nano  nanofile.txt
+   55  cat nanofile.txt 
+   56  vim vimfile.txt
+   57  cat vimfile.txt 
+   58  ls
+   59  rm  touchfile.txt 
+   60  rm  -f   touchfile.txt 
+   61  ls
+   62  rm  -f   *.txt
+   63  ls
+   64  cd
+   65  ls
+   66  history > day1-commands.txt 
+   67  ls
+   68  cd day1/
+   69  ls
+   70  cd
+   71  ls
+   72  ls -l day1-commands.txt  day1
+   73  ls -ld day1-commands.txt  day1
+   74  ls -ld 
+   75  ls -ld *
+   76  ls
+   77  cp   day1-commands.txt   day1/
+   78  ls day1/
+   79  cd  /tmp
+   80  cp   day1-commands.txt   day1/
+   81  ls
+   82  history 
+   83  ls
+   84  cd
+   85  ls
+   86  touch demo.txt
+   87  pwd
+   88  ls
+   89  cp  /root/demo.txt   /root/day1/
+   90  ls day1
+   91  cd /tmp
+   92  cp  /root/demo.txt   /root/day1/
+   93  cd
+   94  find / -name demo.txt
+   95  history 
+   96  ls
+   97  touch moveme.txt
+   98  ls
+   99  mv   moveme.txt   /root/day1/
+  100  ls
+  101  ls day1
+  102  pwd
+  103  touch  /root/day1/touch.txt
+  104  cd day1
+  105  ls
+  106  cd 
+  107  ls
+  108  cd -
+  109  ls
+  110  cd
+  111  cd  day1
+  112  ls
+  113  mv   day1-commands.txt   cmd.txt
+  114  ls
+  115  cd -
+  116  ls
+  117  rm  -rf   day*
+  118  ls
+  119  mkdir d1 file.txt
+  120  ls
+  121  cp demo.txt d1/
+  122  ls demo.txt 
+  123  ls d1/
+  124  ls
+  125  rm -f demo.txt  d1/demo.txt 
+  126  ls
+  127  ls d1/
+  128  cd
+  129  pwd
+  130  ls
+  131  ls -l
+  132  mv file.txt newDir
+  133  ls
+  134  mv   newDir/   .newDir/
+  135  ls
+  136  ls -a
+  137  ls
+  138  ls -a
+  139  mv .newDir/ newDir/
+  140  ls
+  141  ls -l
+  142  mkdir  test; cd test
+  143  touch t1.txt t2.txt t3.txt
+  144  ls -l
+  145  ls -l t1.txt 
+  146  chmod  777  t1.txt 
+  147  ls -l t1.txt 
+  148  chmod  700  t1.txt 
+  149  ls -l t1.txt 
+  150  chmod 000 t1.txt 
+  151  ls -l t1.txt 
+  152  chmod  ug+rw   t1.txt 
+  153  ls -l t1.txt 
+  154  chmod  o+r  t1.txt 
+  155  ls -l t1.txt 
+  156  ls -l t2.txt 
+  157  chmod 664 t2.txt 
+  158  ls -l t2.txt 
+  159  ls -l t3.txt 
+  160  tail -2 /etc/passwd
+  161  chown   jeetu  t3.txt 
+  162  ls -l t3.txt 
+  163  groupadd  b5974
+  164  cat /etc/group | grep b5974
+  165  ls -l t3.txt 
+  166  chgrp   b5974  t3.txt
+  167  ls -l t3.txt 
+  168  cat /etc/group | grep b5974
+  169  useradd  -G b5974  user1
+  170  cat /etc/group | grep b5974
+  171  useradd user2
+  172  cat /etc/group | grep b5974
+  173  usermod -G b5974  user2
+  174  cat /etc/group | grep b5974
+  175  cd
+  176  ############# task ###############
+  177  touch   /report.txt
+  178  ls -l /report.txt 
+  179  groupadd  grp1
+  180  useradd   -G  grp1   u1
+  181  useradd   -G  grp1   u2
+  182  useradd    u3
+  183  cat /etc/group | grep grp1
+  184  chgrp   grp1   /report.txt 
+  185  cat /etc/group | grep grp1
+  186  ls -l /report.txt 
+  187  chmod   g+w,o-r   /report.txt 
+  188  ls -l /report.txt 
+  189  history 
+  190  df -h
+  191  cd  /run/media/root/CentOS-Stream-9-BaseOS-x86_64/
+  192  cd AppStream/Packages/
+  193  ls
+  194  ls | wc -l
+  195  pwd
+  196  ls
+  197  ls telnet*
+  198  rpm  -ivh   telnet-server-0.17-85.el9.x86_64.rpm 
+  199  rpm  -Uvh   telnet-server-0.17-85.el9.x86_64.rpm 
+  200  rpm -q telnet-server
+  201  rpm -q telnet
+  202  rpm -e telnet-server
+  203  rpm -q telnet-server
+  204  cd
+  205  history > Desktop/day2-commands.txt
+  206  lsblk
+  207  fdisk   /dev/sda
+  208  lsblk
+  209  fdisk   /dev/sdb
+  210  lsblk
+  211  pvcreate     /dev/sda1     /dev/sdb1
+  212  vgcreate     myvg     /dev/sda1     /dev/sdb1
+  213  lvcreate   -n  mylv   -l   100%FREE    myvg
+  214  lvs 
+  215  lvdisplay 
+  216  lvdisplay | grep LV
+  217  lvdisplay | grep 'LV Path'
+  218  mkfs.xfs     /dev/myvg/mylv
+  219  mkdir   /lvm
+  220  mount   /dev/myvg/mylv    /lvm
+  221  df -hT
+  222  cd  /lvm
+  223  touch t1.txt
+  224  ls
+  225  pwd
+  226  cd
+  227  bg
+  228  fg
+  229  firefox
+  230  cal
+  231  ls
+  232  date
+  233  firefox &
+  234  date
+  235  cal
+  236  ls
+  237  kill   -9    10756
+  238  history 
+  239  kill -l
+  240  firefox &
+  241  pidof   firefox
+  242  pgrep  firefox
+  243  kill -9 11428
+  244  pgrep  firefox
+  245  pidof   firefox
+  246  firefox & http://google.com
+  247  firefox google.com
+  248  firefox google.com &
+  249  top
+  250  htop
+  251  yum install -y htop
+  252  yum install -y epel-release
+  253  yum install -y htop
+  254  dnf install -y epel-release
+  255  dnf install -y htop
+  256  htop
+  257  history | tail -5
+  258  htop
+  259  init   3
+  260  htop
+  261  init 5
+  262  history 
+  263  ps
+  264  ps  -aux
+  265  ps  aux
+  266  # list top 10 high CPU utilizaion processes
+  267  top
+  268  ps aux --sort=%cpu | head 10
+  269  ps aux --sort=%cpu | head -10
+  270  ps aux --sort=-%cpu | head -10
+  271  ps  -eo pid,ppid,cmd,%cpu,%mem --sort=-%cpu | head -10
+  272  history | tail -5
+  273  history | tail -8
+  274  exit
+  275  top
+  276  ps  -eo pid,ppid,cmd,%cpu,%mem --sort=-%cpu | head -10
+  277  who
+  278  w
+  279  top
+  280  ps -u jeetu
+  281  pgrep yes
+  282  kill -9 21207
+  283  history 
+  284  tail /var/log/messages 
+  285  tail -n 5  /var/log/messages 
+  286  tail /var/log/secure 
+  287  tail /var/log/boot.log
+  288  tail /var/log/dnf.log 
+  289  less /var/log/dnf.log 
+  290  history 
+  291  ls
+  292  cd d1/
+  293  ls
+  294  touch t1
+  295  ls -l
+  296  chgrp wheel t1 
+  297  ls -l
+  298  chgrp grp1 t1 
+  299  ls -l
+  300  ls
+  301  ls -l
+  302  rm -f t1 
+  303  touch t1
+  304  ls -l
+  305  ls -l /report.txt 
+  306  getfacl   /report.txt 
+  307  groupadd   grp2
+  308  useradd  -G grp2  demouser1
+  309  cat /etc/group | grep grp2
+  310  setfacl    -m    g:grp2:r--   /report.txt 
+  311  ls -l /report.txt 
+  312  getfacl   /report.txt 
+  313  ls -l /report.txt 
+  314  history 
+  315  cd
+  316  history > day3-commands.txt
