@@ -1,0 +1,73 @@
+Types of anomalies
+---------------------
+	- Insertion anomaly
+		- it cannot insert data without other unnecessary data.
+	- Update anomaly
+		- same data must be updated in multiple places.
+	- Deletion anomaly
+		- deleting one record removes important data.
+		
+normalization
+- 1 NF
+	- 1 cell, 1 entry
+	- meaning no multiple values in a cell
+	
+- 2 NF	
+	- 1NF + no partial dependency
+
+Single row functions
+-----------------------
+- single row functions operate on one row at a time and retuen results per row.
+- types of single row functions
+	1. character/string functions
+		- UPPER()	-> convert text to capital
+		- lower()	-> convert text to small case
+		- length()	-> returns the lenght of the string
+		- substr()	-> extracts part of the string (substring())
+		- concat()	-> concatenate the string
+		- trim()	-> remove the space
+		- replace()	-> replaces part of the string
+	2. Number functions
+		- round()	-> it rounds a number
+		- floor()	-> returns largest integer -> 5.8 -> 5
+		- ceil()	-> returns the smallest integer -> 5.8 -> 6
+		- abs()		-> returns the positive value
+		- mod()		-> it returns the remainder after division
+		- power()	-> it returns the raised power 
+	3. Date and time functions
+		- current_date()	-> returns current system date
+		- now()				-> returns date and time.
+		- date_add()		-> adds interval to date.
+		- date_sub()		-> subs interval from date.
+		- datediff()		-> returns the days between 2 dates
+		
+in Linux, we have EPOCH date
+- its the difference between number of days since 1st jan 1970 till today.
+
+Cloning a table:
+----------------
+- cloning can be done in 3 ways:
+	1. Simple cloning
+		- it only clones the structure.
+		- no data and no constraints will be cloned.
+		- it copies column names and data types
+		- it does not include primary key, foreign key, indexes or data.
+		- ex:
+			create table new_table like source_table;
+	
+	2. Shallow cloning
+		- it clones the structure and data but without copying dependent objects like constraints ore relationships.
+		- including schema
+		- it does not copy: foreign keys, triggers or indexes
+		- ex:
+			create table new_table as select * from original_table;
+	
+	3. Deep cloning
+		- it clones everything.
+		- like:
+			- data, constraints, indexes, triggers, relationships
+		- its the exact replica of original table
+		- ex:
+			create table new_table like original_table;
+			insert into new_table select * from original_table;
+			
