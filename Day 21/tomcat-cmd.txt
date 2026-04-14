@@ -1,0 +1,66 @@
+    1  ls
+    2  ping google.com
+    3  whoami
+    4  ping google.com 
+    5  yum install -y java-17-openjdk-devel java-11-openjdk-devel java-17-openjdk
+    6  useradd -r -m -U -d /opt/tomcat  -s /bin/false  tomcat
+    7  cat /etc/passwd | grep tomcat
+    8  cd /tmp
+    9  cd 
+   10  cd Downloads/
+   11  ls
+   12  gunzip apache-tomcat-10.1.54.tar.gz 
+   13  ls
+   14  gzip apache-tomcat-10.1.54.tar.gz 
+   15  gzip apache-tomcat-10.1.54.tar 
+   16  ls
+   17  pwd
+   18  ls
+   19  tar  -xzvf apache-tomcat-10.1.54.tar.gz  -C /opt/tomcat --strip-components=1
+   20  chown  -R   tomcat:   /opt/tomcat
+   21  sh  -c 'chmod +x  /opt/tomcat/bin/*.sh'
+   22  vim /etc/systemd/system/tomcat.service
+   23  systemctl daemon-reexec
+   24  systemctl daemon-reload
+   25  systemctl enable --now tomcat
+   26  systemctl  status tomcat
+   27  systemctl status firewalld
+   28  firewall-cmd --permanent --add-port=8080/tcp
+   29  firewall-cmd --permanent --add-port=80/tcp
+   30  firewall-cmd --permanent --reload
+   31  firewall-cmd  --reload
+   32  ip a
+   33  cd
+   34  vim  /opt/tomcat/conf/tomcat-users.xml
+   35  vim  /opt/tomcat/webapps/manager/META-INF/context.xml 
+   36  vim  /opt/tomcat/webapps/host-manager/META-INF/context.xml 
+   37  systemctl restart tomcat
+   38  systemctl status tomcat
+   39  ps -ef | grep java
+   40  ps -ef | grep tomcat
+   41  jps -v
+   42  jps -l
+   43  ps -fp 36599
+   44  ps -fp 36329
+   45  jstat  -gc  36329  5s
+   46  jconsole 
+   47  jps -l
+   48  /opt/tomcat/bin/shutdown.sh 
+   49  kill -9 36329
+   50  /opt/tomcat/bin/shutdown.sh 
+   51  jps -l
+   52  kill -9 37329 37369 
+   53  cd /opt/tomcat/bin/
+   54  ls
+   55  ./shutdown.sh 
+   56  ps -ef | grep tomcat
+   57  jps -l
+   58  kill -15 37565
+   59  kill -9 37565
+   60  jps -l
+   61  lsof -i:8080
+   62  pkill -f java
+   63  lsof -i:8080
+   64  systemctl stop tomcat
+   65  cd
+   66  history > tomcat-commands.txt

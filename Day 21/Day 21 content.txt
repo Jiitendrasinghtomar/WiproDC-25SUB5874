@@ -1,0 +1,267 @@
+Middleware
+-------------
+- Middleware is a software that provides connection/bridges between:
+	applications
+	databases
+	services (APIs, cloud)
+	
+AZure storage account
+	- blob
+	- file share
+	- tables
+	- queues	-->  Middleware service in AZure 5L transaction/min
+	
+Middleware architecture
+-------------------------
+1. Monolithic architecture
+	- centralized application server
+
+2. SOA (Service -Oriented architecture)
+	- reusable services
+	
+3. Microservices architecture
+	- lightweight middleware
+	- API + messaging systems
+	
+4. Cloud-native middleware
+	- its s managed service that helps in reducing the overhead.
+	- ex:
+		- AWS SQS
+		- Azure queue service
+
+5. Container middleware
+	- kubernetes (k8s) acts as an orchestration middleware
+	
+Web services:
+-------------
+- these are the standardized way of integrating web-based application, protocols like:
+	- HTTP
+	- HTTPS
+	- XML
+	- JSON
+	- SOAP
+	- REST APIs
+- these services allow an application to communicate and share data and services amonf themselves over internet.
+- benefits of web services:
+	- language and platform independent
+	- scalable
+	- firewall friendly (80/443)
+- disadvantages:
+	- latency
+	- security risks
+	
+Types of web services:
+----------------------
+- SOAP
+	- Simple Object Access Protocol
+	- its a protocol based web service which uses XML to encode your requests and response to run over HTTP/HTTPS
+	- it has strict standards
+	- it is used in enterprise-level applications like bank and financial transactions
+	
+- REST web services
+	- Representational State Transfer
+	- is uses HTTP methods (Get, post, put)
+	- it uses JSON or XML
+	- it is used majorily in mobile apps, cloud apps, web apps
+	- ex: x.com, Google maps
+
+- XML-RPC/JSON-RPC
+	- these protocols use XML/JSON to encode data and send it via HTTP
+	- this is much lighter than SOAP.
+
+- gRPC
+	- Google Remote Procedure Call
+	- its a modern high-performance RPC, developed by Google.
+	- used in Microservices and kubernetes
+
+- OData protocol
+	- Open Data protocol, its a rest-based protocol for querying and updating environments.
+
+- web sockets
+	- it allows the bi-directional TCP connection
+	- it is used in real-time web apps like chats and IoT.
+	
+Installing an application server:
+-----------------------------------
+for windows & Linux:
+	- Pre-requisites
+		- JDK 8 or above must be installed
+		- Sufficient RAM and disk space must be available
+		- must have admin/root access
+		- firewall -> 8080, 8443, 80, 443
+	- download the server application
+		1. tomcat 		-> https://tomcat.apache.org/
+		2. web logic	-> https://www.oracle.com
+	- Configure the environmental variable
+		- set JAVA_HOME variable
+	- start and accessing the server 
+		- http://localhost:8080
+		
+Step by step installation of Apache Tomcat
+------------------------------------------
+pre-requisites
+	- any linux
+	- root access
+	- internet access
+	
+installing java
+	- we need
+		# java-11-openjdk-devel
+		# java-17-openjdk
+		# java-17-openjdk-devel
+	- cmd:
+		# yum install -y java-17-openjdk-devel java-11-openjdk-devel java-17-openjdk
+		
+create a new user (tomcat)
+	# useradd -r -m -U -d /opt/tomcat  -s /bin/false  tomcat
+		-r = creating a service account
+		-m = creating home directory
+		-U = creating a user group (tomcat)
+		-d = setting the home directory
+		-s = setting up the default shell
+	to test if the user is created:
+		# cat /etc/passwd | grep tomcat
+		
+download apache tomcat
+URL: https://tomcat.apache.org/download-10.cgi
+cmd: wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.54/bin/apache-tomcat-10.1.54.tar.gz
+
+now, uncompress this file and copy it /opt/tomcat directory:
+# tar  -xzvf apache-tomcat-10.1.54.tar.gz  -C /opt/tomcat --strip-components=1
+
+change the permissions of newly copied files:
+	# chown  -R   tomcat:   /opt/tomcat
+	
+making all scripts executable:
+	# sh  -c 'chmod +x  /opt/tomcat/bin/*.sh'
+	
+creating a systemd service file:
+# vim /etc/systemd/system/tomcat.service
+	[Unit]
+	Description=Apache Tomcat Web Application Container
+	After=network.target
+
+	[Service]
+	Type=forking
+
+	User=tomcat
+	Group=tomcat
+
+	Environment="JAVA_HOME=/usr/lib/jvm/java-17-openjdk"
+	Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
+	Environment="CATALINA_HOME=/opt/tomcat"
+	Environment="CATALINA_BASE=/opt/tomcat"
+
+	ExecStart=/opt/tomcat/bin/startup.sh
+	ExecStop=/opt/tomcat/bin/shutdown.sh
+
+	Restart=on-failure
+
+	[Install]
+	WantedBy=multi-user.target
+
+# save and quit -> :wq!
+
+reloading daemon (service) and starting tomcat server
+	# systemctl daemon-reexec
+	# systemctl daemon-reload
+	# systemctl enable --now tomcat
+	# systemctl status tomcat
+	 
+check firewall status
+	# systemctl status firewalld
+		if it is "active: running", then run 
+			# firewall-cmd --permanent --add-port=8080/tcp
+			# firewall-cmd --permanent --add-port=80/tcp
+			# firewall-cmd --reload
+
+test apache on web browser:
+	firefox ===>  http://localhost:8080         OR
+	firefox ===>  http://<IP-Address>:8080
+	
+now edit the specific file in linux
+	# vim  /opt/tomcat/conf/tomcat-users.xml
+		<role rolename="manager-gui"/>
+		<role rolename="admin-gui"/>
+		<user username="admin" password="pass@word1" roles="manager-gui,admin-gui"/>
+	:wq!
+	
+allow the romote access by removing/commenting lines from the following files:
+	# vim  /opt/tomcat/webapps/manager/META-INF/context.xml 
+		 21   <!--
+		 22   <Valve className="org.apache.catalina.valves.RemoteCIDRValve"
+		 23           allow="127.0.0.0/8,::1/128" />
+		 24   -->
+	:wq!
+	
+	# vim  /opt/tomcat/webapps/host-manager/META-INF/context.xml
+		 21   <!--
+		 22   <Valve className="org.apache.catalina.valves.RemoteCIDRValve"
+		 23           allow="127.0.0.0/8,::1/128" />
+		 24   -->
+	:wq!
+	
+restart the tomcat service and check the status
+	# systemctl restart tomcat
+	# systemctl status tomcat
+
+now go to web browser and refresh the page & click on "server status" button
+type user name as admin & password pass@word1
+
+
+######################### Tomcat installation over ###########################
+
+
+commands for java, tomcat and JVM related processes
+----------------------------------------------------
+	to list all java related processes
+		# ps -ef | grep java
+		# ps -ef | grep tomcat
+		
+	to list JVM related processes
+		# jps -v
+		# jps -l
+			- copy (PID = 36329) the process if of cataline.....
+			
+	to list exact process details:
+		# ps -fp 36329
+
+
+	to list garbage collection details after 5 secs:
+		# jstat  -gc  36329  5s
+		
+	to list the memory, heap, threads, cpu info
+		# jconsole
+	
+how to start & stop JVM process
+- to start:
+	# /opt/tomcat/bin/startup.sh	-> this service start JVM
+	
+- to stop:
+	# /opt/tomcat/bin/shutdown.sh	-> this service stop JVM
+	# kill -9 <36329>				-> this kills JVM process
+	# systemctl stop tomcat
+	
+	
+	
+	
+EXTRASSS
+	# systemctl stop tomcat
+	# systemctl stop sshd
+	# systemctl stop httpd
+	# systemctl stop vsftpd
+	# systemctl stop squid
+	
+	systemctl    <action>    <service-name>
+		action
+			- start
+			- stop
+			- restart
+			- enable
+			- disable
+		service-name
+			- tomcat
+			- java
+			- httpd
+			- vsftpd
+	
