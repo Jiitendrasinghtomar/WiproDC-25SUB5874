@@ -1,0 +1,191 @@
+Intro to profiles:
+------------------
+- a profile is a logical runtime instance of an application server.
+- assume, it as a container:
+	- JVM 
+	- ports
+	- logs
+	- security config
+	- applications
+- these profiles are useful in:
+	- specific environments like dev/pre-prod/prod
+	- full isolation
+	- you can run multiple instance on same machine
+- types of profiles:
+	1. Application Server Profile 
+		- standalone profile
+		- this profile is applied directly on a single host.
+		- no cluster.
+		- its a simple setup.
+		- it is useful in development and small deployments.
+		
+	2. Deployment Manager Profile (Dmgr)
+		- central administrative controller
+		- it manages cell, modes, clusters
+		- it centrally controlls everything.
+	
+	3. Custom Profile
+		- its an empty profile
+		- its is used for federating into a cell.
+		
+	4. Node profile
+		- Node represents a physical or a virtual machine
+		- it is usually managed by Dmgr
+		
+	5. Cell (logical group)
+		- collection of nodes + deployment manager
+		
+creating profile for standalone configuration:
+-----------------------------------------------
+1. install base middleware
+	- install either websphere application server or oracle weblogic.
+	- these apps will provide the base for creating the profiles
+	
+2. creating profile
+	- use PMT (Profile Management Tool) to generate a profile
+	- this newly created profile will have its own:
+		- configuration
+		- logs
+		- runtime environment
+		
+3. configuring profile settings
+	- you need to define ports, security creds, JVM settings and so on.
+	- each profile is islocated, you can run multiple servers on the same machine.
+	
+4. start the server instance
+	- you need to run startserver.sh or startserver.bat profiles.
+	- this creates a standalone server environment
+	
+5. deploy application
+	- upload and configure enterprise applications using admin creds
+	
+Profile Federation
+-------------------
+- Profile Federation refers to the integration of multiple identities or configuration profiles across various domains, systems or services to enable secure interoperability for authentication and authorization.
+- types of profile federation
+	1. Identity federation
+		- it is used in single-sign on (SSO) where multiple user profiles across different organizations are federated.
+		- examples of identity providers:
+			- Microsoft Entra ID
+			- Google workspace
+			- Okta
+			
+	2. Application Server federation
+		- in this, we join multiple server profiles under a central domain or deployment manager (dmgr)
+		- this is supported in Web sphere or JBoss 
+		- this allows:
+			- centralized configuration management
+			- single deployment to multiple servers
+			- Role-Based Access Control 
+	
+	3. Middleware service federation
+		- in this, multiple services like authentication, authorization and logging across regions or vendor federate their service profiles.
+		- examples:
+			- Federated Kafka clusters
+			- Federated LDAP directories
+			- Cross-Domain web services
+			
+creating Profile Federation 
+------------------------------
+	1. install base middleware
+	2. create Deployment Manager (dmgr) profile 
+	3. create application server profile
+	4. federate nodes
+		# addNode <dmgr_host> <dmgr_port> -username <admin> -password <pwd>
+	5. verify federation
+	6. deploy applications
+
+Network deployment/cluster environment
+---------------------------------------
+- Node:
+	- its a logical representation of a host
+	- node contains one node agent which is managed centrally by DMGR
+	- it can have one or more Application servers (JVMs)
+	- multiple nodes participate in a cluster
+	- in cluster, these node are called cluster member which get the request via:
+		- load balancer
+		- web server plugin (IHS)
+	- components of nodes	
+		1. node agent - control components
+		2. application server - runs applications
+		3. node repository - local config copy
+		
+Verifying federation
+---------------------
+- this ensures the node is connected properly to the DMGR
+- steps/methods to validate:
+	1. check admin console
+	2. check node agent status
+		# ps -ef | grep nodeagent
+	3. check logs
+		# SystemOut.log
+		# SystemErr.log
+	4. check sync status
+		# syncNode.sh <dmgr_host> <port>
+	5. check nodeagent.properties
+		# DMGR hostname
+		# port
+
+types of sync mechanisms
+	1. automatic sync
+	2. manual sync
+		# syncNode.sh
+	3. full sync
+		# syncNode.sh -force
+	4. incremental sync
+		# default behaviour
+		# it syncs only updated files
+	5. Push/Pull mechanism
+		# Pull mechanism - node agent pulls config from DMGR
+		# Push mechanism - DMGR pushes updates 
+		
+Clusters
+---------
+	- a cluster is a logical grouping of multiple application server instances (JVM), that:
+		- run the same application
+		- sharing workload
+		- it provides HA and scalability
+	- here cluster offers:
+		- load balancing
+			- to distribute the traffic
+		- failover
+			- of one server fails, traffic shits automatically
+		- scalability
+			- add or remove servers dynamically
+		- centralized management
+			- via deployment manager (dmgr)
+			
+types of clustering:
+	1. Vertical clustering
+		- multiple JVMs on same node
+		- this helps in improving CPU utilization
+		
+	2. Horizontal clustering
+		- JVMs across multiple nodes
+		- this helps in improving HA and scalability
+		
+Cluster configuration options
+-------------------------------
+1. Load balancing options
+	- Round-Robin
+	- Weighted routing
+	- sticky session
+2. session management
+	- memory-to-memory replication
+	- database persistence
+3. High availability (HA)
+	- failover configuration
+4. JVM tuning options	
+	- heap size
+	- garbage collection (GC Policy)
+	- thread pool size
+5. deployment options
+	- partial rollout
+	- parallel deployment
+	- seqential deployment
+6. core groups
+	- logical grouping for HA communication
+	- it controls failover boundaries
+7. plugin configuration
+	- web server plugin
+	- controls routing to cluster members
